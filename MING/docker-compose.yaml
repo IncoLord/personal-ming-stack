@@ -8,7 +8,7 @@ services:
       - "${MOSQUITTO_PORT}:1883" # Default MQTT port
       - "${MOSQUITTO_WS_PORT}:9001" # WebSocket port
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro, z # Mount the custom configuration
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro,z # Mount the custom configuration
       - mosquitto_config:/mosquitto/config # Custom configuration files
       - mosquitto_logs:/mosquitto/log # Logs directory
     logging:
@@ -39,7 +39,7 @@ services:
       - "${NODERED_PORT}:1880" # Node-RED web interface port
       - "53880:53880" # OPC-UA server port
     volumes:
-      - node_red_data:/data # Data storage for persistence
+      - ./config/nodered:/data:z  # Data storage for persistence, the flows.JSON should be placed here
     environment:
       - NODE_RED_ENABLE_PROJECTS=true # Enable Node-RED projects feature
     command: >
@@ -62,6 +62,7 @@ services:
     ports:
       - "${GRAFANA_PORT}:3000" # Grafana web interface port
     volumes:
+      - ./config/grafana/provisioning:/etc/grafana/provisioning:z
       - grafana_data:/var/lib/grafana # Data storage for persistence
     logging:
       driver: "json-file"
@@ -69,6 +70,8 @@ services:
         max-size: "10m"
         max-file: "3"
 
+#Only named volumes that you are going to let docker manage need to be declared here.
+#Bind mounts do not need to be declared.
 volumes:
   mosquitto_data:
   mosquitto_config:

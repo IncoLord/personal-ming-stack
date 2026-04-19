@@ -12,6 +12,27 @@ João Victor Melquiades Sátiro - IIoT | Mechatronics
 
 ## Project Description
 
+The project layout is as follows
+
+~/personal-ming-stack/
+├── .env.shared          # Shared variables (PostgreSQL host, ports, etc.)
+├── omero/
+│   ├── docker-compose.yml
+│   ├── .env
+│   └── config/
+├── elabftw/
+│   └── (managed by elabctl, separate directory)
+├── ming/
+│   ├── docker-compose.yml
+│   ├── .env
+│   ├── grafana/
+│   ├── nodered/
+│   └── influxdb/
+└── postgres/
+    ├── docker-compose.yml  # Shared PostgreSQL for both OMERO & elabFTW
+    └── init-scripts/       # SQL to create separate DBs
+
+### MING Stack
 The MING stack is a powerful combination of tools designed for monitoring and analyzing industrial or IoT systems. This stack integrates the following components:
 
 1. **MQTT (Eclipse Mosquitto)**: A lightweight message broker suitable for IoT communication.

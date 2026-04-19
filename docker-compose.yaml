@@ -56,7 +56,7 @@ services:
   # Grafana for data visualization
   grafana:
     env_file:
-      - .env
+      - ming.env
     image: grafana/grafana:11.3.1 # Official Grafana image
     container_name: grafana
     ports:

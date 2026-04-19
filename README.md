@@ -1,12 +1,10 @@
-# MING Stack Tutorial
+# MING Stack
 
-This repo was created for a tutorial on [XIV Symposition on Computing Systems Engineering](https://sbesc.lisha.ufsc.br/sbesc2024/Home) held on November 26-29, 2024 in Recife - PE - Brazil, called "How to generate value in industry with IoT data with a simple service stack?".
+This repo was created to provide a starting point for configuring modern lab spaces. At its current stage of development, it is a personal test project for myself to learn git and SSH server management.
 
-## Tutorial Abstract
-
-This tutorial will present the concepts and practices needed to add value in the industry using a simple and open-source service stack. The goal is to provide a clear understanding of the application of the Industrial Internet of Things (IIoT) and Edge Computing in data-driven decision-making. Using tools such as Node-RED, InfluxDB, Grafana, and the MQTT protocol, we will demonstrate how to efficiently collect, integrate, and visualize real-time data in a cost-effective manner. Additionally, a real case study will be presented, highlighting the implementation of these technologies at Labfaber of CERTI Foundation. This tutorial is aimed at undergraduate and graduate students, as well as technology professionals interested in exploring the possibilities of IIoT to optimize industrial processes and increase operational efficiency.
 
 ## Authors
+Credit to the original authors of the project where this is forked from
 
 Arthur Raulino Kretzer - <https://github.com/ArthurKretzer> - IIoT | Data Engineer | Mechatronics
 

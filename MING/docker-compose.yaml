@@ -1,14 +1,14 @@
 services:
-
+# :z is appended to bind mounts to make compatability with SELinux systems easier (e.g. Fedora)
   # MQTT service using Eclipse Mosquitto
   mqtt:
     image: eclipse-mosquitto:2.0.20 # Official Mosquitto MQTT broker image
     container_name: mqtt_broker
     ports:
-      - "1883:1883" # Default MQTT port
-      - "9001:9001" # WebSocket port
+      - "${MOSQUITTO_PORT}:1883" # Default MQTT port
+      - "${MOSQUITTO_WS_PORT}:9001" # WebSocket port
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro # Mount the custom configuration
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro, z # Mount the custom configuration
       - mosquitto_config:/mosquitto/config # Custom configuration files
       - mosquitto_logs:/mosquitto/log # Logs directory
     logging:
@@ -22,7 +22,7 @@ services:
     image: influxdb:2.7.10-alpine # Official InfluxDB image
     container_name: influxdb
     ports:
-      - "8086:8086" # InfluxDB HTTP API port
+      - "${INFLUXDB_PORT}:8086" # InfluxDB HTTP API port
     volumes:
       - influxdb_data:/var/lib/influxdb # Data storage for persistence
     logging:
@@ -36,7 +36,7 @@ services:
     image: nodered/node-red:4.0.5-22-minimal # Official Node-RED image
     container_name: node_red
     ports:
-      - "1880:1880" # Node-RED web interface port
+      - "${NODERED_PORT}:1880" # Node-RED web interface port
       - "53880:53880" # OPC-UA server port
     volumes:
       - node_red_data:/data # Data storage for persistence
@@ -60,7 +60,7 @@ services:
     image: grafana/grafana:11.3.1 # Official Grafana image
     container_name: grafana
     ports:
-      - "3000:3000" # Grafana web interface port
+      - "${GRAFANA_PORT}:3000" # Grafana web interface port
     volumes:
       - grafana_data:/var/lib/grafana # Data storage for persistence
     logging:

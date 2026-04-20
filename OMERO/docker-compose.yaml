@@ -5,24 +5,27 @@ services:
   database:
     image: "postgres:11"
     environment:
-      POSTGRES_USER: omero
+      POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: omero
-      POSTGRES_PASSWORD: omero
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       - omero
+    #ports are not necessary to specify if they do not need to be exposed outside the container
     volumes:
       - "database:/var/lib/postgresql/data"
 
   omeroserver:
+    depends_on:
+      - database
     # This container uses the tag for the latest server release of OMERO 5
     # To upgrade to the next major release, increment the major version number
     image: "openmicroscopy/omero-server:5"
     environment:
-      CONFIG_omero_db_host: database
-      CONFIG_omero_db_user: omero
-      CONFIG_omero_db_pass: omero
+      CONFIG_omero_db_host: database #this line points the omero server to the postgres database above
+      CONFIG_omero_db_user: ${POSTGRES_USER}
+      CONFIG_omero_db_pass: ${POSTGRES_PASSWORD}
       CONFIG_omero_db_name: omero
-      ROOTPASS: omero
+      ROOTPASS: ${OMERO_ROOT_PASSWORD}
     networks:
       - omero
     ports:
@@ -32,6 +35,8 @@ services:
       - "omero:/OMERO"
 
   omeroweb:
+    depends_on:
+      - omeroserver
     # This container uses the tag for the latest web release of OMERO 5
     # To upgrade to the next major release, increment the major version number
     image: "openmicroscopy/omero-web-standalone:5"
@@ -40,7 +45,7 @@ services:
     networks:
       - omero
     ports:
-      - "4080:4080"
+      - "${OMERO_WEB_PORT}:4080"
 
 networks:
   omero:

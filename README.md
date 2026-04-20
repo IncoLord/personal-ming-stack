@@ -2,7 +2,6 @@
 
 This repo was created to provide a starting point for configuring modern lab spaces. At its current stage of development, it is a personal test project for myself to learn git and SSH server management.
 
-
 ## Authors
 Credit to the original authors of the project where this is forked from
 
@@ -15,22 +14,18 @@ João Victor Melquiades Sátiro - IIoT | Mechatronics
 The project layout is as follows
 
 ~/personal-ming-stack/
-├── .env.shared          # Shared variables (PostgreSQL host, ports, etc.)
 ├── omero/
 │   ├── docker-compose.yml
 │   ├── .env
 │   └── config/
-├── elabftw/
-│   └── (managed by elabctl, separate directory)
-├── ming/
-│   ├── docker-compose.yml
-│   ├── .env
-│   ├── grafana/
-│   ├── nodered/
-│   └── influxdb/
-└── postgres/
-    ├── docker-compose.yml  # Shared PostgreSQL for both OMERO & elabFTW
-    └── init-scripts/       # SQL to create separate DBs
+└── ming/
+    ├── docker-compose.yml
+    ├── .env
+    ├── grafana/
+    ├── nodered/
+    └── influxdb/
+
+As I learn more, perhaps adding a shared postgres service for elabFTW and OMERO will be best. For now, running elabFTW separately is the plan.
 
 ### MING Stack
 The MING stack is a powerful combination of tools designed for monitoring and analyzing industrial or IoT systems. This stack integrates the following components:
@@ -49,7 +44,7 @@ This project provides a pre-configured Docker Compose setup for deploying the MI
 
 ![application](images/tutorial.jpg)
 
-## Features
+### Features
 
 * MQTT broker for real-time communication.
 
@@ -59,9 +54,9 @@ This project provides a pre-configured Docker Compose setup for deploying the MI
 
 * Grafana for creating real-time dashboards and monitoring.
 
-## Installation Tutorial
+### Installation Tutorial
 
-### Prerequisites
+#### Prerequisites
 
 1. **Docker**: Ensure Docker is installed on your system.
 
@@ -71,7 +66,7 @@ This project provides a pre-configured Docker Compose setup for deploying the MI
 
     * [Install Docker Compose](https://docs.docker.com/compose/install/)
 
-### Steps
+#### Steps
 
 1. **Clone the Repository**
 
